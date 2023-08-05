@@ -40,6 +40,16 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector3(0, 50 * Time.deltaTime * 5, 0);
         }
+        else
+        {
+            if(collision.gameObject.tag == "enemy")
+            {
+                Destroy(collision.transform.parent.gameObject);
+            }else if(collision.gameObject.tag == "plane")
+            {
+                Debug.Log("Game Over");
+            }
+        }
     }
 
     private void OnCollisionStay(Collision collision)

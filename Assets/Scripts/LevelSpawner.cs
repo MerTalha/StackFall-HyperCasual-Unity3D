@@ -48,6 +48,7 @@ public class LevelSpawner : MonoBehaviour
             tempObstacle = Instantiate(obstaclePrefab[Random.Range(0, 2)]);
             tempObstacle.transform.position = new Vector3(0, obstacleNumber - 0.01f, 0);
             tempObstacle.transform.eulerAngles = new Vector3(0, obstacleNumber *8,0);
+            tempObstacle.transform.parent = FindObjectOfType<RotateManager>().transform;
         }
 
         temp2Obstacle = Instantiate(winPrefab);

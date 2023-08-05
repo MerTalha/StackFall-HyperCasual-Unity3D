@@ -14,14 +14,14 @@ public class LevelSpawner : MonoBehaviour
 
     private GameObject tempObstacle, temp2Obstacle;
 
-    private int level = 1, addNumber = 7;
+    private int level = 75, addNumber = 7;
 
     float obstacleNumber;
 
     void Start()
     {
         randomObstacleGenerator();
-
+        float randomNumber = Random.value;
         for(obstacleNumber = 0; obstacleNumber > -level - addNumber; obstacleNumber -= 0.5f)
         {
             if(level <= 20)
@@ -34,20 +34,34 @@ public class LevelSpawner : MonoBehaviour
                 tempObstacle = Instantiate(obstaclePrefab[Random.Range(1, 3)]);
             }
 
-            if (level > 50 && level < 100)
+            if (level >= 50 && level < 100)
             {
                 tempObstacle = Instantiate(obstaclePrefab[Random.Range(2, 4)]);
             }
 
-            if (level > 100)
+            if (level >= 100)
             {
                 tempObstacle = Instantiate(obstaclePrefab[Random.Range(3, 4)]);
             }
 
-
-            tempObstacle = Instantiate(obstaclePrefab[Random.Range(0, 2)]);
+            //tempObstacle = Instantiate(obstaclePrefab[Random.Range(0, 2)]);
             tempObstacle.transform.position = new Vector3(0, obstacleNumber - 0.01f, 0);
-            tempObstacle.transform.eulerAngles = new Vector3(0, obstacleNumber *8,0);
+            tempObstacle.transform.eulerAngles = new Vector3(0, obstacleNumber * 8, 0);
+
+            if (Mathf.Abs(obstacleNumber) >= level * 0.3f && Mathf.Abs(obstacleNumber) <= level * 0.06f)
+            {
+                tempObstacle.transform.eulerAngles = new Vector3(0, obstacleNumber * 8, 0);
+                tempObstacle.transform.eulerAngles += Vector3.up * 180;
+            }else if (Mathf.Abs(obstacleNumber) > level * 0.8f)
+            {
+                tempObstacle.transform.eulerAngles = new Vector3(0, obstacleNumber * 8, 0);
+                if(randomNumber > 0.75f)
+                {
+                    tempObstacle.transform.eulerAngles += Vector3.up * 180;
+                }
+            }
+
+           
             tempObstacle.transform.parent = FindObjectOfType<RotateManager>().transform;
         }
 

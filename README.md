@@ -10,8 +10,6 @@ A simple Unity-based clone of the popular mobile game Helix Jump. This project r
 - [Features](#features)
 - [Installation](#installation)
 - [How to Play](#how-to-play)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 

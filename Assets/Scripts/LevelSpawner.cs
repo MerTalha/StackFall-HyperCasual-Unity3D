@@ -18,6 +18,8 @@ public class LevelSpawner : MonoBehaviour
 
     float obstacleNumber;
 
+ 
+
     void Start()
     {
         randomObstacleGenerator();
